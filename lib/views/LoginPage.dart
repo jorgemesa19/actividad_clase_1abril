@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
-import 'RegistrarPage.dart';
 import 'package:actividad_clase_1abril/controllers/LoginController.dart';
 
 class LoginPage extends StatelessWidget {
@@ -109,20 +108,6 @@ class LoginPage extends StatelessWidget {
                 onPrimary: Colors.white,
               ),
               child: Text('Iniciar sesión'),
-            ),
-            SizedBox(height: 10.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegistrarPage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.grey.shade200,
-                onPrimary: Colors.black,
-              ),
-              child: Text('Registrar'),
             ),
           ],
         ),
