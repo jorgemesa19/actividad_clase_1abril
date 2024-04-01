@@ -75,10 +75,14 @@ class LoginPage extends StatelessWidget {
                 String email = emailController.text;
                 String password = passwordController.text;
 
-                if (LoginController.login(email, password)) {
+                // Verificar las credenciales
+                Map<String, String>? currentUser = LoginController.login(email, password);
+
+                if (currentUser != null) {
+                  // Navegar a HomePage con el usuario actual
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => HomePage(currentUser: currentUser)),
                   );
                 } else {
                   showDialog(
