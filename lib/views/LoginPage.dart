@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
 import 'RegistrarPage.dart';
+import 'package:actividad_clase_1abril/controllers/LoginController.dart';
 
 class LoginPage extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +25,13 @@ class LoginPage extends StatelessWidget {
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: const Row(
+              child: Row(
                 children: [
                   Icon(Icons.email, color: Colors.black54),
                   SizedBox(width: 10.0),
                   Expanded(
                     child: TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         labelText: 'Correo electrónico',
@@ -45,12 +50,13 @@ class LoginPage extends StatelessWidget {
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: const Row(
+              child: Row(
                 children: [
                   Icon(Icons.lock, color: Colors.black54),
                   SizedBox(width: 10.0),
                   Expanded(
                     child: TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -63,13 +69,36 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 20.0),
+            SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
+                String email = emailController.text;
+                String password = passwordController.text;
+
+                if (LoginController.login(email, password)) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Error'),
+                        content: Text('Correo electrónico o contraseña incorrectos.'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Aceptar'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
@@ -77,7 +106,7 @@ class LoginPage extends StatelessWidget {
               ),
               child: Text('Iniciar sesión'),
             ),
-            const SizedBox(height: 10.0),
+            SizedBox(height: 10.0),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
