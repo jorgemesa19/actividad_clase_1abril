@@ -14,77 +14,15 @@ class RegistrarPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Nombres',
-                ),
-              ),
-            ),
+            _buildInputField('Nombres', backgroundColor: Colors.grey.shade200),
             SizedBox(height: 10.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Apellidos',
-                ),
-              ),
-            ),
+            _buildInputField('Apellidos', backgroundColor: Colors.grey.shade200),
             SizedBox(height: 10.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Correo',
-                ),
-              ),
-            ),
+            _buildInputField('Correo', backgroundColor: Colors.grey.shade200),
             SizedBox(height: 10.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Contraseña',
-                ),
-              ),
-            ),
+            _buildInputField('Contraseña', obscureText: true, backgroundColor: Colors.grey.shade200),
             SizedBox(height: 10.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  labelText: 'Verificar Contraseña',
-                ),
-              ),
-            ),
+            _buildInputField('Verificar Contraseña', obscureText: true, backgroundColor: Colors.grey.shade200),
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
@@ -100,6 +38,31 @@ class RegistrarPage extends StatelessWidget {
               child: Text('Registrarse'),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInputField(String labelText, {bool obscureText = false, Color backgroundColor = Colors.lightBlue}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: TextField(
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 15.0),
+          border: InputBorder.none,
+          labelText: labelText,
         ),
       ),
     );

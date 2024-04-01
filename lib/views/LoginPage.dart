@@ -86,7 +86,7 @@ class LoginPage extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.grey,
+                primary: Colors.grey.shade200,
                 onPrimary: Colors.black,
               ),
               child: Text('Registrar'),
